@@ -1,9 +1,9 @@
-import { lazy } from "react";
+import { ComponentType, lazy, LazyExoticComponent } from "react";
 
 interface Routes {
   name: string;
   path: string;
-  component: any;
+  component: LazyExoticComponent<ComponentType<any>>;
 }
 
 const routes: Routes[] = [

@@ -48,7 +48,6 @@ module.exports = {
         app1: "app1",
         app2: "app2",
       },
-      exposes: {},
       shared: {
         ...deps,
         react: { singleton: true, eager: true, requiredVersion: deps.react },
