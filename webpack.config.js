@@ -8,6 +8,7 @@ module.exports = {
   devServer: {
     static: "./",
     port: 3000,
+    historyApiFallback: true,
   },
   output: {
     publicPath: "http://localhost:3000/",
@@ -22,16 +23,32 @@ module.exports = {
         loader: "ts-loader",
         exclude: /node_modules/,
       },
+      {
+        test: /\.(sass|css|scss)$/,
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              plugins: () => [require("autoprefixer")()],
+            },
+          },
+          "sass-loader",
+        ],
+      },
     ],
   },
   plugins: [
     new ModuleFederationPlugin({
       name: "container",
       library: { type: "var", name: "container" },
+      filename: "remoteEntry.js",
       remotes: {
         app1: "app1",
         app2: "app2",
       },
+      exposes: {},
       shared: {
         ...deps,
         react: { singleton: true, eager: true, requiredVersion: deps.react },
@@ -40,9 +57,15 @@ module.exports = {
           eager: true,
           requiredVersion: deps["react-dom"],
         },
+        "react-bootstap": {
+          singleton: true,
+          eager: true,
+          requiredVersion: deps["react-bootstrap"],
+        },
       },
     }),
     new HtmlWebpackPlugin({
+      inject: false,
       template: "./public/index.html",
     }),
   ],
