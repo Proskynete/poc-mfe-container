@@ -56,15 +56,9 @@ module.exports = {
           eager: true,
           requiredVersion: deps["react-dom"],
         },
-        "react-bootstap": {
-          singleton: true,
-          eager: true,
-          requiredVersion: deps["react-bootstrap"],
-        },
       },
     }),
     new HtmlWebpackPlugin({
-      inject: false,
       template: "./public/index.html",
     }),
   ],
