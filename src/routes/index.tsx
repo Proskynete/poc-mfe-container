@@ -6,6 +6,7 @@ const Router = () => {
   return (
     <Routes>
       {routes.map((route) => {
+        const Guard = route.guard || Fragment;
         const Layout = route.layout || Fragment;
         const View = route.component;
 
@@ -14,11 +15,13 @@ const Router = () => {
             key={route.name}
             path={route.path}
             element={
-              <Layout>
-                <Suspense fallback="Cargando...">
-                  <View />
-                </Suspense>
-              </Layout>
+              <Guard>
+                <Layout>
+                  <Suspense fallback="Cargando...">
+                    <View />
+                  </Suspense>
+                </Layout>
+              </Guard>
             }
           />
         );
