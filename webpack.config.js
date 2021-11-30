@@ -45,6 +45,7 @@ module.exports = {
       library: { type: "var", name: "container" },
       filename: "@d-Una",
       remotes: {
+        auth: "auth",
         drivers: "drivers",
         growth: "growth",
       },
