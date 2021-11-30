@@ -1,28 +1,63 @@
 import React, { FC } from "react";
-import { Nav, Navbar } from "react-bootstrap";
+import { Col, Container, Nav, Navbar, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { navigation } from "../../routes/navigation";
 
 const AdminLayout: FC = ({ children }) => {
   return (
     <div>
-      <div className="row">
-        <div className="col-md-12">
-          <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
-            <Navbar.Brand href="#home">D-Una</Navbar.Brand>
+      <Row>
+        <Col md={12}>
+          <Navbar bg="dark" variant="dark">
+            <Container>
+              <Navbar.Brand>D-Una</Navbar.Brand>
+              <Navbar.Toggle />
+              <Navbar.Collapse className="justify-content-end">
+                <Navbar.Text>
+                  Bienvenido: <span>Mark Otto</span>
+                </Navbar.Text>
+              </Navbar.Collapse>
+            </Container>
           </Navbar>
-        </div>
-      </div>
+        </Col>
+      </Row>
 
-      <div className="row">
-        <div className="col-2">
-          <Nav className="flex-column">
-            <Nav.Link href="/">Inicio</Nav.Link>
-            <Nav.Link href="/drivers">Drivers</Nav.Link>
-            <Nav.Link href="/growth">Growth</Nav.Link>
-          </Nav>
-        </div>
+      <Container fluid>
+        <Row>
+          <Col md={2}>
+            <Nav className="flex-column">
+              {navigation.map((nav) => {
+                return (
+                  <div key={nav.section} style={{ marginTop: "20px" }}>
+                    <div style={{ marginTop: "10px", marginBottom: "20px" }}>
+                      {nav.section}
+                    </div>
 
-        <div className="col-10">{children}</div>
-      </div>
+                    {nav.items.map((item) => {
+                      return (
+                        item.show && (
+                          <p style={{ margin: "0" }} key={item.title}>
+                            <Link to={item.to}>
+                              {item.icon}
+                              {item.title}
+                            </Link>
+                          </p>
+                        )
+                      );
+                    })}
+                  </div>
+                );
+              })}
+            </Nav>
+          </Col>
+
+          <Col md={10}>
+            <Row>
+              <Col>{children}</Col>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
