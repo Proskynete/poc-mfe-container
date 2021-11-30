@@ -26,14 +26,14 @@ const routes: RouteInterface[] = [
     path: "/drivers",
     layout: AdminLayout,
     //@ts-ignore
-    component: lazy(() => import("drivers/CounterAppOne")),
+    component: lazy(() => import("drivers/")),
   },
   {
     name: "Growth",
     path: "/growth",
     layout: AdminLayout,
     //@ts-ignore
-    component: lazy(() => import("growth/CounterAppTwo")),
+    component: lazy(() => import("growth/")),
   },
 ];
 
