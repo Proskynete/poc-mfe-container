@@ -16,13 +16,13 @@ const routes: Routes[] = [
     name: "Drivers",
     path: "/drivers",
     //@ts-ignore
-    component: lazy(() => import("app1/CounterAppOne")),
+    component: lazy(() => import("drivers/CounterAppOne")),
   },
   {
     name: "Growth",
     path: "/growth",
     //@ts-ignore
-    component: lazy(() => import("app2/CounterAppTwo")),
+    component: lazy(() => import("growth/CounterAppTwo")),
   },
 ];
 

@@ -43,10 +43,10 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "container",
       library: { type: "var", name: "container" },
-      filename: "remoteEntry.js",
+      filename: "@d-Una",
       remotes: {
-        app1: "app1",
-        app2: "app2",
+        drivers: "drivers",
+        growth: "growth",
       },
       shared: {
         ...deps,
