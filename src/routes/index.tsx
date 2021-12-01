@@ -3,6 +3,10 @@ import { Routes, Route } from "react-router-dom";
 import { routes } from "./routes";
 
 const Router = () => {
+  const data = {
+    username: "Lalo",
+  };
+
   return (
     <Routes>
       {routes.map((route) => {
@@ -18,7 +22,7 @@ const Router = () => {
               <Guard>
                 <Layout>
                   <Suspense fallback="Cargando...">
-                    <View />
+                    <View data={data} />
                   </Suspense>
                 </Layout>
               </Guard>

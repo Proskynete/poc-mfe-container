@@ -2,7 +2,7 @@ import { Navigate, useLocation } from "react-router";
 
 const Guard = ({ children }: { children: JSX.Element }) => {
   let location = useLocation();
-  const isAuthenticated = false;
+  const isAuthenticated = true;
 
   if (!isAuthenticated) {
     return location.pathname === "/auth" ? children : <Navigate to="/auth" />;
