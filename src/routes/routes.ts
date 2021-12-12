@@ -40,7 +40,7 @@ const routes: RouteInterface[] = [
     path: "/drivers",
     guard: Guard,
     layout: AdminLayout,
-    rolesAllowed: ["superadmin", "kam", "driver"],
+    rolesAllowed: ["superadmin", "driver"],
     //@ts-ignore
     component: lazy(() => import("drivers/")),
   },
@@ -49,7 +49,7 @@ const routes: RouteInterface[] = [
     path: "/growth",
     guard: Guard,
     layout: AdminLayout,
-    rolesAllowed: ["superadmin", "kam", "growth"],
+    rolesAllowed: ["superadmin", "growth"],
     //@ts-ignore
     component: lazy(() => import("growth/")),
   },

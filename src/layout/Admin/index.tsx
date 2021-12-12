@@ -1,10 +1,11 @@
 import React, { FC } from "react";
 import { Col, Container, Nav, Navbar, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/auth.hook";
 import { navigation } from "../../routes/navigation";
 
 const AdminLayout: FC = ({ children }) => {
-  const currentRole = "growth";
+  const { userInfo } = useAuth();
 
   return (
     <div>
@@ -16,7 +17,7 @@ const AdminLayout: FC = ({ children }) => {
               <Navbar.Toggle />
               <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
-                  Bienvenido: <span>Mark Otto</span>
+                  Bienvenido: <span>{userInfo?.name}</span>
                 </Navbar.Text>
               </Navbar.Collapse>
             </Container>
@@ -38,7 +39,7 @@ const AdminLayout: FC = ({ children }) => {
                     {nav.items.map((item) => {
                       return (
                         item.rolesAllowed.find(
-                          (roleAllowed) => roleAllowed === currentRole
+                          (roleAllowed) => roleAllowed === userInfo?.role
                         ) &&
                         item.show && (
                           <p style={{ margin: "0" }} key={item.title}>
