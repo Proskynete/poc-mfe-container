@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { navigation } from "../../routes/navigation";
 
 const AdminLayout: FC = ({ children }) => {
+  const currentRole = "growth";
+
   return (
     <div>
       <Row>
@@ -35,6 +37,9 @@ const AdminLayout: FC = ({ children }) => {
 
                     {nav.items.map((item) => {
                       return (
+                        item.rolesAllowed.find(
+                          (roleAllowed) => roleAllowed === currentRole
+                        ) &&
                         item.show && (
                           <p style={{ margin: "0" }} key={item.title}>
                             <Link to={item.to}>

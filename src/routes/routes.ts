@@ -6,6 +6,7 @@ import {
 } from "react";
 import { AdminLayout } from "../layout/Admin";
 import { Guard } from "./Guard";
+import { RolesAllowed } from "./navigation";
 
 interface RouteInterface {
   name: string;
@@ -14,6 +15,7 @@ interface RouteInterface {
   layout?: FunctionComponent<{}>;
   component: LazyExoticComponent<ComponentType<any>>;
   routes?: RouteInterface[];
+  rolesAllowed: RolesAllowed[];
 }
 
 const routes: RouteInterface[] = [
@@ -21,6 +23,7 @@ const routes: RouteInterface[] = [
     name: "auth",
     path: "/auth",
     guard: Guard,
+    rolesAllowed: ["superadmin", "kam", "driver", "growth"],
     //@ts-ignore
     component: lazy(() => import("auth/")),
   },
@@ -29,6 +32,7 @@ const routes: RouteInterface[] = [
     path: "/",
     guard: Guard,
     layout: AdminLayout,
+    rolesAllowed: ["superadmin", "kam", "driver", "growth"],
     component: lazy(() => import("../views/Home")),
   },
   {
@@ -36,6 +40,7 @@ const routes: RouteInterface[] = [
     path: "/drivers",
     guard: Guard,
     layout: AdminLayout,
+    rolesAllowed: ["superadmin", "kam", "driver"],
     //@ts-ignore
     component: lazy(() => import("drivers/")),
   },
@@ -44,6 +49,7 @@ const routes: RouteInterface[] = [
     path: "/growth",
     guard: Guard,
     layout: AdminLayout,
+    rolesAllowed: ["superadmin", "kam", "growth"],
     //@ts-ignore
     component: lazy(() => import("growth/")),
   },
